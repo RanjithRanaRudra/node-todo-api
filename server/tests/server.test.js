@@ -15,6 +15,15 @@ const todos = [
     }
 ];
 
+const users = [
+    {
+        email: 'User1@ytr.in'
+    },
+    {
+        email: 'User2@ytr.in'
+    }
+];
+
 describe('Server', () => {
     beforeEach((done) => {
         // Todo.remove({}).then(() => done()); ---------- depecreated
@@ -49,7 +58,6 @@ describe('Server', () => {
             });
         });
         it('should create a todo with invalid data', (done) => {
-            
             request(app)
             .post('/todos')
             .send({})
