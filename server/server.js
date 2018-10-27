@@ -91,6 +91,23 @@ app.get('/todos/:id' , (req, res)=> {
     }).catch((err)=> res.status(400).send(err));
 });
 
+app.delete('/todos/:id', (req, res)=> {
+    var id = req.params.id;
+
+    // Id Validation
+    if(!ObjectID.isValid(id)) {
+        res.status(404).send();
+    }
+
+    // remove by id
+    Todo.findByIdAndRemove(id).then((todos)=> {
+        if(!todos) {
+            res.status(404).send();
+        }
+        res.send(JSON.stringify({todos},undefined, 2));
+    }).catch((err)=> res.status(400).send(err));
+});
+
 
 app.listen(port, () => {
     console.log(`Server Started on port : ${port}`);
