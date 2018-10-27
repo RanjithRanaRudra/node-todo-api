@@ -21,7 +21,7 @@ var app = express();
 app.use(bodyParser.json());
 
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
     var now = new Date().toString();
