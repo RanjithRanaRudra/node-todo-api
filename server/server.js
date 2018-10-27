@@ -42,7 +42,7 @@ app.post('/todos', (req, res) => {
     });
 
     todo.save().then((doc)=>{
-        res.send(doc);
+        res.send(JSON.stringify(doc, undefined, 2));
     }, (err) => {
         res.status(400).send(err);
     });
@@ -55,7 +55,7 @@ app.post('/users', (req, res) => {
     });
 
     User.save().then((doc)=>{
-        res.send(doc);
+        res.send(JSON.stringify(doc, undefined, 2));
     }, (err) => {
         res.status(400).send(err);
     });
@@ -63,14 +63,14 @@ app.post('/users', (req, res) => {
 
 app.get('/todos', (req, res) => {
     Todo.find().then((todos)=> {
-        res.send({todos});
+        res.send(JSON.stringify({todos}, undefined, 2));
     }, (err)=> {
         res.status(400).send(err);
     });
 });
 app.get('/users', (req, res) => {
     user.find().then((users)=> {
-        res.send({users});
+        res.send(JSON.stringify({users}, undefined, 2));
     }, (err)=> {
         res.status(400).send(err);
     });
@@ -87,7 +87,7 @@ app.get('/todos/:id' , (req, res)=> {
         if(!todos) {
             res.status(404).send();
         }
-        res.send({todos});
+        res.send(JSON.stringify({todos}, undefined, 2));
     }).catch((err)=> res.status(400).send(err));
 });
 
